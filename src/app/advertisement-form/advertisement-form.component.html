@@ -1,0 +1,92 @@
+<nav class ="navbar navbar-light bg-primary">
+    <div class ="container-fluid">
+        <h2>Adverstiment</h2>
+        <div class="d-flex">
+        <button (click)="clickAddAdvertise()" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Adverstiment</button>
+        
+        </div>
+        
+    </div>
+</nav>
+<!--Jumbotron-->
+<div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+    <h1 class ="display-5 fw-bold">Adverstiment Records Management</h1>
+        <p class="col-md-8 fs-4">You can save Records of Adverstiment Using Angular</p>
+         </div></div>
+<table class="table mt-4">
+    <thead>
+        <tr>
+            <th scope="col"> Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Title</th>
+            <th scope="col">Category</th>
+            <th scope="col">Description</th>
+           
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of allAdverstimentData">
+            <td>{{data.id}}</td>
+            <td>{{data.name}}</td>
+            <td>{{data.title}}</td>
+            <td>{{data.category}}</td>
+            <td>{{data.description}}</td>
+                
+            <td>
+                <button (click)="onEditAdvertise(data)" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>&nbsp;
+                <button (click)="deleteAdvertise(data)" class ="btn btn-danger">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<!-- Button trigger modal -->
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Adverstiment Records Form</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="formValue" >
+                <div class="mb-3">
+                  <label for="exampleInputName" class="form-label" >Name</label>
+                  <input type="text" formControlName="Name" class="form-control" placeholder=" Name Here" id="exampleInputEmail1" aria-describedby="emailHelp" >
+                
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputName" class="form-label">Title</label>
+                  <input type="text" formControlName="Title" class="form-control" placeholder=" title" id="exampleInputEmail1" aria-describedby="emailHelp" >
+                
+                </div>
+                <div class="form-group mb-3">
+                  <label for="Category"  class="form-label">Category</label>
+                  <select formControlName="Category" class="formcontrol" aria-describedby="emailHelp" >
+                    <option disabled>Select Category</option>
+                    <option>Furniture</option>
+                    <option>HardWare</option>
+                    <option>Mobile</option>
+                  </select>
+                </div>
+              
+                <div class="mb-3">
+                    <label for="exampleInputDescription" class="form-label">Description</label>
+                    <input type="text" formControlName="text" class="form-control" placeholder="Something you want" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                
+                
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Clear</button>
+          <button *ngIf="showAdd" type="button" class="btn btn-primary" (click)="addAdvertise">Add Details</button>
+          <button *ngIf="showbtn" type="button" class="btn btn-primary" (click)="updateAdvertise">update Details</button>
+    
+        </div>
+      </div>
+    </div>
+  </div>
